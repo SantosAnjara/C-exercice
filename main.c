@@ -32,15 +32,21 @@ int ajouter_debut(Node **tete, int valeur){
     return 0;
 }
 
-
+void afficher(const Node *tete){
+    const Node *temp = tete;
+    while (temp != NULL){
+        printf("%d\n", temp->valeur);
+        temp = temp->next;
+    }
+}
 
 int main()
 {
     Node *tete = NULL;
-    if (ajouter_debut(&tete, 2) == 0){
-        printf("reussi");
-    }// liste vide : crée [2 | NULL], tete le désigne
-    ajouter_debut(&tete, 3);
+    ajouter_debut(&tete, 2); // liste vide : crée [2 | NULL], tete le désigne
+    ajouter_debut(&tete, 5);
+    ajouter_debut(&tete, 9);
 
+    afficher(tete);
     return 0;
 }
