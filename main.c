@@ -39,6 +39,26 @@ void afficher(const Node *tete){
         temp = temp->next;
     }
 }
+int ajouter_fin(Node **tete, int valeur){
+    if (tete == NULL){
+        return 0;
+    }
+    Node *nouveau = creer_noeud(valeur);
+    if (nouveau == NULL){
+        return 1;
+    }
+    if (*tete == NULL){
+        *tete = nouveau;
+        return 0;
+    }
+
+    Node *courant = *tete;
+    while (courant->next != NULL) {
+        courant = courant->next;
+    }
+    courant->next = nouveau;
+    return 0;
+}
 
 void liberer(Node **tete){
     if (tete == NULL){
@@ -58,10 +78,14 @@ void liberer(Node **tete){
 int main()
 {
     Node *tete = NULL;
+    ajouter_fin(&tete, 4);
+    ajouter_debut(&tete, 3);
     ajouter_debut(&tete, 2); // liste vide : crée [2 | NULL], tete le désigne
     ajouter_debut(&tete, 5);
     ajouter_debut(&tete, 9);
+    ajouter_fin(&tete, 3);
 
     afficher(tete);
+    liberer(&tete);
     return 0;
 }
