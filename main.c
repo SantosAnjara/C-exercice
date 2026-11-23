@@ -40,6 +40,21 @@ void afficher(const Node *tete){
     }
 }
 
+void liberer(Node **tete){
+    if (tete == NULL){
+        return;
+    }
+    Node *courant = *tete;
+    Node *suivant;
+
+    while (courant != NULL){
+        suivant = courant->next;
+        free(courant);
+        courant = suivant;
+    }
+    *tete = NULL;
+}
+
 int main()
 {
     Node *tete = NULL;
